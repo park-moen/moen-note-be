@@ -66,4 +66,16 @@ export class UserService {
       throw new BadRequestException(error.message);
     }
   }
+
+  async findUserById(id: string) {
+    try {
+      const user = await this.userRepository.findOneBy({ id });
+
+      if (!user) throw new Error();
+
+      return user;
+    } catch (error) {
+      throw new BadRequestException('해당하는 사용자를 찾을 수 없습니다.');
+    }
+  }
 }
