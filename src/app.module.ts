@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
 
 import * as Joi from 'joi';
 
@@ -23,6 +24,7 @@ import * as Joi from 'joi';
         DB_NAME: Joi.string().required(),
       }),
     }),
+
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -34,8 +36,10 @@ import * as Joi from 'joi';
       keepConnectionAlive: true,
       charset: 'utf8mb4',
       synchronize: false,
-      logging: true,
+      logging: false,
     }),
+
+    UserModule,
   ],
 })
 export class AppModule {}

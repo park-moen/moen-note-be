@@ -24,9 +24,9 @@ export class HttpApiExceptionFilter implements ExceptionFilter {
     if (typeof error === 'string') {
       response
         .status(status)
-        .json({ success: true, statusCode: status, message: error });
+        .json({ success: false, statusCode: status, message: error });
     } else {
-      response.status(status).json({ success: true, ...error });
+      response.status(status).json({ success: false, ...error });
     }
   }
 }
