@@ -46,4 +46,9 @@ export class UserController {
 
     return user;
   }
+
+  @Post('logout')
+  async userLogout(@Res({ passthrough: true }) response: Response) {
+    response.clearCookie('jwt');
+  }
 }
