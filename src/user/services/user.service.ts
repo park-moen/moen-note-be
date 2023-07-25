@@ -69,7 +69,7 @@ export class UserService {
 
   async findUserById(id: string) {
     try {
-      const user = await this.userRepository.findOneBy({ id });
+      const user = await this.userRepository.findOneBy({ id: Number(id) });
 
       if (!user) throw new Error();
 

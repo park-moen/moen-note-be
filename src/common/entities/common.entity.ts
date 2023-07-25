@@ -3,13 +3,13 @@ import {
   DeleteDateColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { IsUUID } from 'class-validator';
+import { IsNumber } from 'class-validator';
 import { Exclude } from 'class-transformer';
 
 export abstract class CommonEntity {
-  @IsUUID()
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @IsNumber()
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @CreateDateColumn()
   updateAt: Date;

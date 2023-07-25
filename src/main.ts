@@ -74,6 +74,8 @@ class Application {
     this.server.useGlobalPipes(
       new ValidationPipe({
         transform: true,
+        forbidNonWhitelisted: true,
+        whitelist: true,
       }),
     );
     this.server.use(
