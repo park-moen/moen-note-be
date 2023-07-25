@@ -11,6 +11,10 @@ export class WorkspaceService {
     private readonly workspaceTreeRepository: TreeRepository<WorkspaceEntity>,
   ) {}
 
+  async readRootWorkspace() {
+    return await this.workspaceTreeRepository.findTrees();
+  }
+
   async addWorkspace(
     title: WorkspaceDTO['title'],
     parentId: WorkspaceDTO['parentId'],
