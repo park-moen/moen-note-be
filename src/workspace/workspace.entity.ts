@@ -11,8 +11,8 @@ export class WorkspaceEntity extends CommonEntity {
   title: string;
 
   @TreeChildren()
-  workspaces: WorkspaceEntity[];
+  children: WorkspaceEntity[];
 
   @TreeParent()
-  workspace: WorkspaceEntity;
+  parent: WorkspaceEntity;
 }
