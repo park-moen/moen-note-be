@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { WorkspaceModule } from './workspace/workspace.module';
 
 import * as Joi from 'joi';
 
@@ -35,11 +36,13 @@ import * as Joi from 'joi';
       autoLoadEntities: true,
       keepConnectionAlive: true,
       charset: 'utf8mb4',
-      synchronize: false,
+      synchronize: process.env.NODE_ENV === 'development' ? true : false,
       logging: false,
     }),
 
     UserModule,
+
+    WorkspaceModule,
   ],
 })
 export class AppModule {}
