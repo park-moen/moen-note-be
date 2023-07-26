@@ -42,4 +42,12 @@ export class WorkspaceService {
 
     return workspace;
   }
+
+  async deleteWorkspace(id: number) {
+    const deleteState = await this.workspaceTreeRepository.delete(id);
+
+    if (deleteState.affected === 0) {
+      throw new BadRequestException('잘못된 id로 delete를 시도했습니다.');
+    }
+  }
 }
