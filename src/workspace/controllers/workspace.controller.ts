@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { WorkspaceService } from '../services/workspace.service';
 import { WorkspaceDTO } from '../dtos/workspace.dto';
 
@@ -17,5 +17,10 @@ export class WorkspaceController {
       workspaceDTO.title,
       workspaceDTO.parentId,
     );
+  }
+
+  @Delete(':id')
+  async deleteWorkspace(@Param('id') id: number) {
+    return this.workspaceService.deleteWorkspace(id);
   }
 }
