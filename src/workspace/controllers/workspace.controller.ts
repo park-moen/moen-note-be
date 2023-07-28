@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { WorkspaceService } from '../services/workspace.service';
 import { WorkspaceDTO } from '../dtos/workspace.dto';
 
@@ -17,6 +25,14 @@ export class WorkspaceController {
       workspaceDTO.title,
       workspaceDTO.parentId,
     );
+  }
+
+  @Put(':id')
+  async updateWorkspace(
+    @Param('id') id: number,
+    @Body() { title }: { title: string },
+  ) {
+    return this.workspaceService.updateWorkspace(id, title);
   }
 
   @Delete(':id')

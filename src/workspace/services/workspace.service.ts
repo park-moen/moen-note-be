@@ -43,6 +43,18 @@ export class WorkspaceService {
     return workspace;
   }
 
+  async updateWorkspace(id: number, title: string) {
+    if (id <= 0 || Number.isNaN(id)) {
+      throw new BadRequestException('잘못된 id 값을 입력했습니다.');
+    }
+
+    if (typeof title !== 'string') {
+      throw new BadRequestException('잘못된 title 값을 입력했습니다.');
+    }
+
+    await this.workspaceTreeRepository.update(id, { title });
+  }
+
   async deleteWorkspace(id: number) {
     const deleteState = await this.workspaceTreeRepository.delete(id);
 
